@@ -14,10 +14,10 @@ const router = express.Router();
 router.get('/', getProducts);
 
 // Add a new product (admin-only route)
-router.post('/', isAdmin, addProduct); // Add admin middleware if necessary
-
+router.post('/', addProduct); // Add admin middleware if necessary
+     
 // Update a product by ID (admin-only route)
-router.put('/:id', isAdmin, updateProduct);
+router.put('/:id',  updateProduct);
 
 // Delete a product by ID (admin-only route)
 router.delete('/:id', isAdmin, deleteProduct);

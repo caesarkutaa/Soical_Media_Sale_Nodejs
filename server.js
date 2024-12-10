@@ -6,7 +6,6 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
 const passport = require("passport");
-require("./config/passport"); // Load passport configuration
 const NodeCache = require("node-cache");
 
 const rootRouter = require("./routes");
@@ -19,7 +18,7 @@ app.use(helmet());
 app.use(morgan("combined"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(passport.initialize());
+
 
 // Rate Limiting Setup
 const limiter = rateLimit({

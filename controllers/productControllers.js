@@ -5,6 +5,7 @@ exports.getProducts = async (req, res) => {
   try {
     const products = await Product.find();
     res.json(products);
+    console.log(products)
   } catch (err) {
     res.status(500).json({ msg: 'Server error' });
   }
@@ -13,14 +14,15 @@ exports.getProducts = async (req, res) => {
 // Add a new product
 exports.addProduct = async (req, res) => {
   try {
-    const { name, category, price, stock, description, duration, quantity } = req.body;
+    const { name,  price, stock, description, quantity } = req.body;
 
-    const newProduct = new Product({ name, category, price, stock, description, duration, quantity });
+    const newProduct = new Product({ name,  price, stock, description, quantity });
     await newProduct.save();
 
     res.status(201).json(newProduct);
   } catch (err) {
-    res.status(500).json({ msg: 'Server error' });
+    console.log(err)
+    res.status(500).json({ msg: 'Server error' , error: err.message});
   }
 };
 
@@ -35,7 +37,7 @@ exports.updateProduct = async (req, res) => {
       return res.status(404).json({ msg: 'Product not found' });
     }
 
-    res.json(product);
+    res.json(product);  
   } catch (err) {
     res.status(500).json({ msg: 'Server error' });
   }

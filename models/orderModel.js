@@ -9,6 +9,7 @@ const OrderSchema = new mongoose.Schema({
     },
   ],
   totalAmount: { type: Number, required: true },
+  proofOfPayment: { type: String },
   status: { type: String, enum: ['Pending', 'Completed'], default: 'Pending' },
 }, { timestamps: true });
 
